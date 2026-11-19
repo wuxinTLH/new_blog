@@ -39,6 +39,9 @@ test('homepage, links, navigation and responsive layout', async ({ page }) => {
   }
   await expect(page.locator('footer a[href="https://github.com/wuxintlh"]')).toBeVisible();
   await expect(page.locator('footer a[href="https://space.bilibili.com/29058270"]')).toBeVisible();
+  const qqGroup = page.getByRole('link', { name: '加入 QQ 粉丝群' });
+  await expect(qqGroup).toBeVisible();
+  await expect(qqGroup).toHaveAttribute('href', 'https://qm.qq.com/q/qWt61dd9cG');
   await expect(page.locator('footer')).toContainText('SakuraMikku. All rights reserved.');
   await page.getByRole('link', { name: '技术栈', exact: true }).click();
   await expect(page).toHaveURL(/#stack$/);
