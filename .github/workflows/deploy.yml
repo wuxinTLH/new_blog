@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
       - name: Build static site
         run: npm run build
       - name: Install browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Test website
         run: npm test
       - name: Upload site
