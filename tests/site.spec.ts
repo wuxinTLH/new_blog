@@ -12,6 +12,11 @@ test('homepage, links, navigation and responsive layout', async ({ page }) => {
     await expect(avatar).toHaveAttribute('src', './avatar-circle.png');
     expect(await avatar.evaluate(image => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
   }
+  await expect(page.getByRole('img', { name: '跨性别旗帜：蓝、粉、白、粉、蓝五条色带' })).toBeVisible();
+  await expect(page.locator('.identity-note')).toContainText('Male to Female');
+  await expect(page.locator('.identity-message')).toHaveText('自在生长，成为自己。');
+  await expect(page.locator('.hero-intro')).toContainText('女装穿搭与 Cosplay');
+  await expect(page.getByRole('heading', { name: '穿搭 & 日常' })).toBeVisible();
   await expect(page.locator('.info-card')).toHaveCount(3);
   await expect(page.locator('.skill-card')).toHaveCount(8);
   await expect(page.locator('.skill-card h3')).toHaveText(['前端开发', '后端开发', '游戏开发', '数据库', '消息队列', '云运维', '机器人开发', 'Agent 开发']);
