@@ -1,0 +1,10 @@
+.mnemon/
+node_modules/
+dist/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.local

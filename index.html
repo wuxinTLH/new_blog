@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="sakura">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf8fb" />
+    <meta name="description" content="SakuraMikku 的个人空间。关于代码、技术，以及生活中的一点点浪漫。" />
+    <link rel="icon" type="image/png" href="./avatar-circle.png" />
+    <link rel="apple-touch-icon" href="./avatar-circle.png" />
+    <title>SakuraMikku · 代码与浪漫</title>
+    <script>
+      // Apply the remembered theme before painting, even when storage is unavailable.
+      try {
+        const theme = localStorage.getItem('sakuramikku-theme');
+        if (['minimal', 'light', 'dark', 'sakura'].includes(theme)) {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳转到主要内容</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#home" aria-label="SakuraMikku 首页"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36" />Sakura<span class="brand-light">Mikku</span><span class="brand-dot">.</span></a>
+        <nav aria-label="主导航"><a class="nav-link active" href="#home">首页</a><a class="nav-link" href="#about">关于</a><a class="nav-link" href="#stack">技术栈</a></nav>
+        <a class="header-github" href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </header>
+      <main id="main">
+        <section id="home" class="hero section-anchor" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="status-dot"></span> HELLO, WORLD. HELLO, YOU.</span>
+            <h1 id="hero-title">在代码里探索，<br />在生活里<span class="gradient-text">绽放。</span><span class="tiny-spark" aria-hidden="true">✧</span></h1>
+            <p class="hero-intro">嗨，我是 <strong>SakuraMikku</strong><span class="wave" aria-hidden="true"> ✳</span><br />一个热爱技术、保持好奇的人。<br />这里是我的数字小天地，存放热爱，也记录成长。</p>
+            <div class="hero-actions"><a class="button button-primary" href="#stack">探索我的技术栈 <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="#about">认识一下 <span aria-hidden="true">↓</span></a></div>
+            <div class="hero-note"><span class="note-line"></span> STAY CURIOUS. KEEP CREATING.</div>
+          </div>
+          <div class="hero-art" role="img" aria-label="蓝粉色星球与环绕轨道，象征代码和创造力">
+            <div class="art-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><span class="art-star star-three">+</span>
+            <div class="planet"><span class="planet-shine"></span><span class="planet-symbol">&lt;/&gt;</span></div>
+            <div class="float-label label-code"><span class="label-icon">⌘</span> Made of curiosity</div>
+            <div class="float-label label-heart"><span>♡</span> Code with love</div>
+            <div class="art-caption"><span class="status-dot"></span> A LITTLE SPACE, A LOT OF POSSIBILITIES</div>
+          </div>
+        </section>
+        <div class="section-divider"><span>01 / A LITTLE ABOUT ME</span><span>慢慢来，也会很快。</span></div>
+        <section id="about" class="about-section section-anchor" aria-labelledby="about-title">
+          <div class="section-heading"><span class="eyebrow">BEHIND THE SCREEN</span><h2 id="about-title">不止是代码<span class="accent">。</span></h2><p>技术是表达的方式，好奇心是前进的方向。</p></div>
+          <div class="about-cards">
+            <article class="info-card"><span class="card-icon icon-blue" aria-hidden="true">⌘</span><span class="card-number">01</span><h3>探索 & 构建</h3><p>从一个想法，到一个可以触摸的界面。享受把灵感变成现实的过程。</p><span class="card-tag">BUILD SOMETHING GOOD</span></article>
+            <article class="info-card"><span class="card-icon icon-pink" aria-hidden="true">✧</span><span class="card-number">02</span><h3>简单 & 纯粹</h3><p>喜欢清晰的逻辑，也喜欢干净的设计。让复杂留在背后，让简单走到眼前。</p><span class="card-tag">LESS, BUT BETTER</span></article>
+            <article class="info-card"><span class="card-icon icon-purple" aria-hidden="true">♧</span><span class="card-number">03</span><h3>热爱 & 日常</h3><p>屏幕之外，也有值得收藏的风景。保持热爱，给生活留一点浪漫。</p><span class="card-tag">LIFE BEYOND THE SCREEN</span></article>
+          </div>
+        </section>
+        <section id="stack" class="stack-section section-anchor" aria-labelledby="stack-title">
+          <div class="section-heading stack-heading"><div><span class="eyebrow">MY DIGITAL TOOLBOX</span><h2 id="stack-title">技术栈<span class="accent">。</span></h2></div><p>从前端到后端，从游戏到机器人。<br />用合适的工具，创造有趣的东西。</p></div>
+          <div class="skill-grid">
+            <article class="skill-card"><h3>前端开发</h3><ul class="skill-tags"><li>Vue3 <span>Composition API + script setup</span></li><li>TypeScript</li><li>HTML</li><li>JavaScript</li></ul></article>
+            <article class="skill-card"><h3>后端开发</h3><ul class="skill-tags"><li>Java <span>SpringBoot 框架</span></li><li>Python</li><li>Node.js <span>Express 框架</span></li><li>C/C++</li><li>C# <span>Unity3D 游戏开发</span></li></ul></article>
+            <article class="skill-card"><h3>游戏开发</h3><ul class="skill-tags"><li>Unity3D <span>C#</span></li><li>UE5 <span>虚幻引擎</span></li></ul></article>
+            <article class="skill-card"><h3>数据库</h3><ul class="skill-tags"><li>MySQL</li><li>PostgreSQL</li><li>Redis</li></ul></article>
+            <article class="skill-card"><h3>消息队列</h3><ul class="skill-tags"><li>Kafka</li><li>RocketMQ</li></ul></article>
+            <article class="skill-card"><h3>云运维</h3><ul class="skill-tags"><li>Docker</li><li>Prometheus</li><li>Python <span>脚本</span></li><li>Shell <span>脚本</span></li></ul></article>
+            <article class="skill-card"><h3>机器人开发</h3><ul class="skill-tags"><li>AstrBot <span>聊天机器人框架</span></li><li>OneBot <span>聊天机器人协议</span></li></ul></article>
+            <article class="skill-card"><h3>Agent 开发</h3><ul class="skill-tags"><li>LLM API <span>大模型接入</span></li><li>Prompt Engineering <span>提示词工程</span></li><li>Tool Calling <span>工具调用</span></li><li>MCP <span>模型上下文协议</span></li><li>RAG <span>检索增强生成</span></li><li>Multi-Agent <span>多智能体协作</span></li></ul></article>
+          </div>
+        </section>
+        <section class="connect-section" aria-labelledby="connect-title"><div><span class="eyebrow">LET’S CONNECT</span><h2 id="connect-title">很高兴，在这里遇见你。</h2><p>去看看我的代码，或者在另一个小角落打个招呼。</p></div><a class="button button-primary" href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer">在 GitHub 找到我 <span aria-hidden="true">↗</span></a><span class="connect-decoration" aria-hidden="true">✳</span></section>
+      </main>
+      <footer class="site-footer"><div class="footer-top"><a class="brand" href="#home"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36" />Sakura<span class="brand-light">Mikku</span><span class="brand-dot">.</span></a><div class="footer-links"><a href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://space.bilibili.com/29058270" target="_blank" rel="noopener noreferrer">哔哩哔哩 ↗</a></div></div><div class="footer-bottom"><span>© <span id="year">2026</span> SakuraMikku. All rights reserved.</span><span>以代码为笔，以热爱为墨 <span class="footer-heart">♡</span></span><a href="https://vite.dev" target="_blank" rel="noopener noreferrer">Built with Vite ↗</a></div></footer>
+    </div>
+    <aside class="theme-dock" aria-label="外观主题"><span class="theme-dock-label">外观</span><div class="theme-options" role="group" aria-label="选择主题"><button type="button" data-set-theme="minimal" title="极简主题" aria-label="极简主题" aria-pressed="false"><span class="swatch swatch-minimal"></span></button><button type="button" data-set-theme="light" title="浅色主题" aria-label="浅色主题" aria-pressed="false"><span class="swatch swatch-light"></span></button><button type="button" data-set-theme="dark" title="深色主题" aria-label="深色主题" aria-pressed="false"><span class="swatch swatch-dark"></span></button><button type="button" data-set-theme="sakura" title="蓝粉主题" aria-label="蓝粉主题" aria-pressed="true"><span class="swatch swatch-sakura"></span></button></div><span class="theme-current" aria-live="polite">蓝粉</span></aside>
+    <canvas id="cursor-trail" aria-hidden="true"></canvas><div id="cursor-follower" aria-hidden="true"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
