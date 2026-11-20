@@ -2,7 +2,8 @@ import './style.css';
 import { discoverPhotos, initPhotoCarousel } from './carousel';
 
 const photoFiles = import.meta.glob<string>('../photos/*', { eager: true, query: '?url', import: 'default' });
-initPhotoCarousel(discoverPhotos(photoFiles));
+const thumbnails = import.meta.glob<string>('../photos/thumbnails/*.webp', { eager: true, query: '?url', import: 'default' });
+initPhotoCarousel(discoverPhotos(photoFiles, thumbnails));
 
 type Theme = 'minimal' | 'light' | 'dark' | 'sakura';
 const themes: Theme[] = ['minimal', 'light', 'dark', 'sakura'];

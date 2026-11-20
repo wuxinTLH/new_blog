@@ -1,4 +1,4 @@
-type Photo = { url: string; number: number };
+type Photo = { url: string; number: number; thumbnail?: string };
 
 export function initPhotoCarousel(photos: Photo[]) {
   const gallery = document.querySelector<HTMLElement>('.photo-gallery')!;
@@ -80,7 +80,8 @@ export function initPhotoCarousel(photos: Photo[]) {
   function openPreview() {
     if (!image.naturalWidth || image.hidden) return;
     clearTimeout(closeTimer);
-    largeImage.src = image.src;
+    largeImage.src = photos[index].url;
+    preloadOriginals();
     largeImage.alt = image.alt;
     zoomed = true;
     preview.hidden = false;
@@ -116,15 +117,31 @@ export function initPhotoCarousel(photos: Photo[]) {
       timer = setInterval(() => show(index + 1), 3000);
     }
   }
+  const preloaded = new Set<string>();
+  function preload(url: string) {
+    if (preloaded.has(url)) return;
+    preloaded.add(url);
+    const asset = new Image();
+    asset.addEventListener('error', () => preloaded.delete(url), { once: true });
+    asset.src = url;
+  }
+  function preloadOriginals() {
+    for (const delta of [-1, 1]) preload(photos[(index + delta + photos.length) % photos.length].url);
+  }
   function show(next: number) {
     index = (next + photos.length) % photos.length;
     image.hidden = false;
     gallery.querySelector<HTMLElement>('.photo-error')!.hidden = true;
-    image.src = photos[index].url;
+    image.src = photos[index].thumbnail ?? photos[index].url;
+    for (const delta of [-1, 1]) {
+      const photo = photos[(index + delta + photos.length) % photos.length];
+      preload(photo.thumbnail ?? photo.url);
+    }
     image.alt = `女装穿搭照片 nz_${photos[index].number}`;
     if (zoomed) {
       largeImage.src = photos[index].url;
       largeImage.alt = image.alt;
+      preloadOriginals();
     }
     status.textContent = `${index + 1} / ${photos.length} · NZ_${photos[index].number}`;
     dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
@@ -177,9 +194,13 @@ export function initPhotoCarousel(photos: Photo[]) {
   show(0);
 }
 
-export function discoverPhotos(files: Record<string, string>): Photo[] {
+export function discoverPhotos(files: Record<string, string>, thumbnails: Record<string, string> = {}): Photo[] {
+  const previews = new Map(Object.entries(thumbnails).flatMap(([path, url]) => {
+    const match = /\/nz_([1-9]\d*)\.webp$/i.exec(path);
+    return match ? [[Number(match[1]), url] as const] : [];
+  }));
   return Object.entries(files).flatMap(([path, url]) => {
     const match = /\/nz_([1-9]\d*)\.(?:jpe?g|png|webp|avif|gif)$/i.exec(path);
-    return match ? [{ url, number: Number(match[1]) }] : [];
+    return match ? [{ url, number: Number(match[1]), ...(previews.has(Number(match[1])) ? { thumbnail: previews.get(Number(match[1])) } : {}) }] : [];
   }).sort((a, b) => a.number - b.number || a.url.localeCompare(b.url));
 }

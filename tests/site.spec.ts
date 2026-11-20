@@ -48,6 +48,25 @@ test('photo preview is transparent, animated and does not lock page scrolling', 
   await expect(preview).toBeHidden();
 });
 
+test('carousel loads lightweight thumbnails and opens original only on demand', async ({ page }) => {
+  const originals: string[] = [];
+  page.on('request', request => {
+    if (/nz_\d+.*\.jpg(?:\?|$)/i.test(request.url())) originals.push(request.url());
+  });
+  await page.goto('/');
+  const image = page.locator('.photo-image');
+  await image.scrollIntoViewIfNeeded();
+  await expect(image).toHaveAttribute('src', /\.webp/);
+  await expect.poll(() => image.evaluate(img => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await page.locator('[data-photo-next]').click();
+  await expect(image).toHaveAttribute('alt', /nz_2$/);
+  await expect.poll(() => image.evaluate(img => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  expect(originals).toEqual([]);
+  await image.click();
+  await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', /nz_2.*\.jpg/);
+  await expect.poll(() => originals.length).toBeGreaterThan(0);
+});
+
 test('photo discovery sorts numeric names and ignores unrelated files', () => {
   expect(discoverPhotos({ '/photos/nz_10.JPG': 'ten', '/photos/nz_2.webp': 'two', '/photos/readme.md': 'no', '/photos/nz_0.png': 'zero' })).toEqual([{ url: 'two', number: 2 }, { url: 'ten', number: 10 }]);
 });
