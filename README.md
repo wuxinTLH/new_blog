@@ -13,6 +13,10 @@
 - GitHub / B站等所有外部链接都使用 target="_blank" 和 rel="noopener noreferrer"；页内锚点留在当前页面。
 - GitHub Actions 构建、浏览器测试并部署到 GitHub Pages。
 
+## 女装照片轮播
+
+将照片放在项目根目录 `photos/`，使用 `nz_1.jpg`、`nz_2.png`、`nz_3.webp` 等命名，自动匹配 jpg/jpeg/png/webp/avif/gif 后缀并按数字排序。详见 `photos/README.md`。没有照片时显示准备中，不使用示例照片。添加图片后需重新构建并部署。
+
 ## 本地开发
 
 推荐 Node.js **22.12+**（CI 使用 22）及 npm。

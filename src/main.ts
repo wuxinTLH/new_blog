@@ -1,4 +1,8 @@
 import './style.css';
+import { discoverPhotos, initPhotoCarousel } from './carousel';
+
+const photoFiles = import.meta.glob<string>('../photos/*', { eager: true, query: '?url', import: 'default' });
+initPhotoCarousel(discoverPhotos(photoFiles));
 
 type Theme = 'minimal' | 'light' | 'dark' | 'sakura';
 const themes: Theme[] = ['minimal', 'light', 'dark', 'sakura'];
@@ -34,7 +38,7 @@ const cursorShapes: Record<Theme, string> = {
   minimal: '<path d="M4 2v20l5-6 5 9 4-2-5-8h8Z" fill="#fff" stroke="#292929" stroke-width="1.5"/>',
   light: '<path d="M4 2v21l5-6 5 9 4-2-5-8h8Z" fill="#71bbe8" stroke="#244d73" stroke-width="1.3"/>',
   dark: '<path d="M12 2v20M2 12h20" stroke="#c6adff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#202331" stroke="#c6adff"/>',
-  sakura: '<path d="m13 2 3.2 7.8L24 13l-7.8 3.2L13 24l-3.2-7.8L2 13l7.8-3.2Z" fill="#f5a9b8" stroke="#458fab" stroke-width="1.2"/><circle cx="13" cy="13" r="2" fill="#fff"/>',
+  sakura: '<path d="M14 24C11 21 3 15 3 9a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 6-8 12-11 15Z" fill="#f5a9b8" stroke="#458fab" stroke-width="1.2"/><path d="M6 9a3 3 0 0 1 4-2" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>',
 };
 const cursorStyle = document.createElement('style');
 document.head.append(cursorStyle);

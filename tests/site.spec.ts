@@ -1,4 +1,89 @@
 import { test, expect } from '@playwright/test';
+import { discoverPhotos, initPhotoCarousel } from '../src/carousel';
+
+test('photo preview is transparent, animated and does not lock page scrolling', async ({ page }) => {
+  await page.goto('/');
+  const image = page.locator('.photo-image');
+  await image.scrollIntoViewIfNeeded();
+  await expect(image).toBeVisible();
+  await expect.poll(() => image.evaluate(img => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await image.click();
+  const preview = page.getByRole('dialog', { name: '照片放大预览' });
+  await expect(preview).toHaveClass(/is-open/);
+  await expect(preview).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  const largeImage = preview.locator('img');
+  const first = await largeImage.getAttribute('src');
+  await preview.getByRole('button', { name: '上一张照片', exact: true }).click();
+  await expect(largeImage).not.toHaveAttribute('src', first!);
+  const last = await largeImage.getAttribute('src');
+  await preview.getByRole('button', { name: '下一张照片', exact: true }).click();
+  await expect(largeImage).toHaveAttribute('src', first!);
+  await page.keyboard.press('ArrowLeft');
+  await expect(largeImage).toHaveAttribute('src', last!);
+  await page.keyboard.press('ArrowRight');
+  await expect(largeImage).toHaveAttribute('src', first!);
+  await expect.poll(async () => {
+    const img = await largeImage.boundingBox();
+    const prev = await preview.locator('.photo-preview-prev').boundingBox();
+    const next = await preview.locator('.photo-preview-next').boundingBox();
+    return !!img && !!prev && !!next && Math.abs(img.x - (prev.x + prev.width)) < 18 && Math.abs(next.x - (img.x + img.width)) < 18;
+  }).toBe(true);
+  const bounds = (await largeImage.boundingBox())!;
+  await page.mouse.move(bounds.x + bounds.width * .7, bounds.y + bounds.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + bounds.width * .7 - 80, bounds.y + bounds.height / 2, { steps: 8 });
+  await page.mouse.up();
+  await expect(largeImage).not.toHaveAttribute('src', first!);
+  await largeImage.dispatchEvent('pointerdown', { pointerId: 7, pointerType: 'touch', isPrimary: true, button: 0, clientX: 100, clientY: 200 });
+  await largeImage.dispatchEvent('pointerup', { pointerId: 7, pointerType: 'touch', isPrimary: true, button: 0, clientX: 180, clientY: 202 });
+  await expect(largeImage).toHaveAttribute('src', first!);
+  await expect(page.locator('footer .connect-section .footer-top .brand')).toBeAttached();
+  await expect(page.locator('footer .connect-section .footer-links a')).toHaveCount(5);
+  await expect(page.getByRole('link', { name: '在 GitHub 找到我' })).toHaveCount(0);
+  const before = await page.evaluate(() => scrollY);
+  await page.mouse.move(15, 300);
+  await page.mouse.wheel(0, 350);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(before);
+  await preview.click({ position: { x: 10, y: 100 } });
+  await expect(preview).toBeHidden();
+});
+
+test('photo discovery sorts numeric names and ignores unrelated files', () => {
+  expect(discoverPhotos({ '/photos/nz_10.JPG': 'ten', '/photos/nz_2.webp': 'two', '/photos/readme.md': 'no', '/photos/nz_0.png': 'zero' })).toEqual([{ url: 'two', number: 2 }, { url: 'ten', number: 10 }]);
+});
+
+test('photo carousel empty state and manual controls', async ({ page }) => {
+  await page.goto('/');
+  // Isolate fixture data so this test also passes after real photos are added.
+  await page.evaluate(() => {
+    const original = document.querySelector('.photo-gallery')!;
+    const clone = original.cloneNode(true) as HTMLElement;
+    clone.querySelector('.photo-dots')!.replaceChildren();
+    clone.querySelector<HTMLElement>('.photo-empty')!.hidden = false;
+    clone.querySelector<HTMLElement>('.photo-stage')!.hidden = true;
+    clone.querySelector<HTMLElement>('.photo-controls')!.hidden = true;
+    original.replaceWith(clone);
+  });
+  await page.evaluate(initPhotoCarousel, []);
+  await expect(page.locator('.photo-empty')).toBeVisible();
+  await expect(page.locator('.photo-controls')).toBeHidden();
+  const url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=';
+  await page.evaluate(initPhotoCarousel, [{ url, number: 2 }, { url, number: 10 }]);
+  await expect(page.locator('.photo-empty')).toBeHidden();
+  await expect(page.locator('.photo-status')).toHaveText('1 / 2 · NZ_2');
+  await page.getByRole('button', { name: '下一张照片' }).click();
+  await expect(page.locator('.photo-status')).toHaveText('2 / 2 · NZ_10');
+  await page.getByRole('button', { name: '下一张照片' }).click();
+  await expect(page.locator('.photo-status')).toHaveText('1 / 2 · NZ_2');
+  await page.locator('.photo-gallery').press('ArrowLeft');
+  await expect(page.locator('.photo-image')).toHaveAttribute('alt', '女装穿搭照片 nz_10');
+  await page.getByRole('button', { name: '暂停播放', exact: true }).click();
+  await expect(page.getByRole('button', { name: '继续播放' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: '查看照片 nz_2', exact: true }).click();
+  await expect(page.locator('.photo-status')).toHaveText('1 / 2 · NZ_2');
+  expect(await page.locator('.photos-section').evaluate(section => Boolean(section.compareDocumentPosition(document.querySelector('.about-section')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  expect((await page.locator('.photo-stage').boundingBox())!.height).toBeLessThanOrEqual(210);
+});
 
 test('homepage, links, navigation and responsive layout', async ({ page }) => {
   const errors: string[] = [];
@@ -39,10 +124,19 @@ test('homepage, links, navigation and responsive layout', async ({ page }) => {
   }
   await expect(page.locator('footer a[href="https://github.com/wuxintlh"]')).toBeVisible();
   await expect(page.locator('footer a[href="https://space.bilibili.com/29058270"]')).toBeVisible();
-  const qqGroup = page.getByRole('link', { name: '加入 QQ 粉丝群' });
+  await expect(page.getByRole('navigation', { name: '社交导航' }).locator('a')).toHaveCount(5);
+  await expect(page.locator('.footer-links a svg')).toHaveCount(5);
+  await expect(page.locator('.footer-links a > span:first-of-type')).toHaveText(['GitHub', '哔哩哔哩', 'X', '加入 QQ 粉丝群', '加入电报群']);
+  await expect(page.locator('footer a[href="https://x.com/SakuraMikku"]')).toBeVisible();
+  const qqGroup = page.locator('footer').getByRole('link', { name: '加入 QQ 粉丝群' });
   await expect(qqGroup).toBeVisible();
   await expect(qqGroup).toHaveAttribute('href', 'https://qm.qq.com/q/qWt61dd9cG');
+  await expect(page.locator('.footer-links a').last()).toHaveAttribute('href', 'https://t.me/+4-YmXdo5WC9mZTY8');
   await expect(page.locator('footer')).toContainText('SakuraMikku. All rights reserved.');
+  await page.getByRole('link', { name: '关于', exact: true }).click();
+  await expect(page).toHaveURL(/#about$/);
+  await expect(page.locator('#about')).toHaveClass(/photos-section/);
+  await expect(page.locator('#photos-title')).toBeInViewport();
   await page.getByRole('link', { name: '技术栈', exact: true }).click();
   await expect(page).toHaveURL(/#stack$/);
   await expect(page.locator('#stack-title')).toBeInViewport();
