@@ -1,5 +1,7 @@
 import './style.css';
 import { discoverPhotos, initPhotoCarousel } from './carousel';
+import { initProjects } from './projects';
+void initProjects();
 
 const photoFiles = import.meta.glob<string>('../photos/*', { eager: true, query: '?url', import: 'default' });
 const thumbnails = import.meta.glob<string>('../photos/thumbnails/*.webp', { eager: true, query: '?url', import: 'default' });

@@ -44,5 +44,6 @@
 :root[data-theme=sakura] .skill-card h3{color:#79658f}
 :root[data-theme=sakura] .skill-tags li{border-color:#e3dfeb;background:#ffffffb8;color:#655970}
 :root[data-theme=sakura] .skill-tags span{color:#7c7189}
+.projects-section{padding-top:65px}.project-status{font-size:11px;color:var(--muted);line-height:1.8;margin:20px 0 14px}.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.project-card{display:flex;flex-direction:column;min-width:0;padding:22px;border:1px solid var(--border);border-radius:12px;background:var(--surface);transition:border-color .2s,transform .2s}.project-card:hover{border-color:var(--accent);transform:translateY(-3px)}.project-card h3{font-size:15px;margin:0 0 12px;overflow-wrap:anywhere}.project-card p{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 18px;overflow-wrap:anywhere}.project-meta{font-size:10px;color:var(--muted);margin-top:auto}.project-more{display:inline-block;margin-top:20px;font-size:12px;color:var(--accent)}@media(max-width:640px){.project-grid{grid-template-columns:1fr}.projects-section{padding-top:44px}}
 @media(max-width:640px){.skill-grid{grid-template-columns:1fr;gap:13px;margin-top:22px}.skill-card{padding:20px}.skill-tags li{font-size:12px}}
 
