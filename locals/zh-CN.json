@@ -142,7 +142,7 @@
   "photo.zoom": "放大查看照片",
   "photo.alt": "女装穿搭照片 nz_{number}",
   "photo.dot": "查看照片 nz_{number}",
-  "photo.status": "{current} / {total} · NZ_{number}",
+  "photo.status": "{current} / {total}",
   "projects.snapshotChecking": "已加载项目快照，正在检查 GitHub 更新…",
   "projects.live": "按 GitHub 最近更新时间排序 · 不含 Fork 与归档仓库",
   "projects.empty": "暂时没有可展示的公开项目。",

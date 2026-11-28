@@ -142,7 +142,7 @@
   "photo.zoom": "Enlarge photo",
   "photo.alt": "Feminine fashion photo nz_{number}",
   "photo.dot": "View photo nz_{number}",
-  "photo.status": "{current} / {total} · NZ_{number}",
+  "photo.status": "{current} / {total}",
   "projects.snapshotChecking": "Project snapshot loaded. Checking GitHub for updates…",
   "projects.live": "Synced recently updated public projects from GitHub.",
   "projects.empty": "No public projects to display yet.",
