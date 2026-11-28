@@ -5,6 +5,13 @@ import { discoverPhotos, initPhotoCarousel } from './carousel';
 import { initProjects } from './projects';
 void initProjects();
 
+// Cache only fingerprinted assets after load, without delaying the first render.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    void navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, { updateViaCache: 'none' }).catch(() => { /* Optional cache. */ });
+  }, { once: true });
+}
+
 const photoFiles = import.meta.glob<string>('../photos/*', { eager: true, query: '?url', import: 'default' });
 const thumbnails = import.meta.glob<string>('../photos/thumbnails/*.webp', { eager: true, query: '?url', import: 'default' });
 initPhotoCarousel(discoverPhotos(photoFiles, thumbnails));

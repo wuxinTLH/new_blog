@@ -135,7 +135,8 @@ export function initPhotoCarousel(photos: Photo[]) {
     image.hidden = false;
     gallery.querySelector<HTMLElement>('.photo-error')!.hidden = true;
     image.src = photos[index].thumbnail ?? photos[index].url;
-    for (const delta of [-1, 1]) {
+    // Do not download neighboring photos until the gallery is actually visible.
+    if (visible) for (const delta of [-1, 1]) {
       const photo = photos[(index + delta + photos.length) % photos.length];
       preload(photo.thumbnail ?? photo.url);
     }
