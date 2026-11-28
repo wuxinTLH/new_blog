@@ -87,7 +87,11 @@ test('photo carousel empty state and manual controls', async ({ page }) => {
   await expect(page.locator('.photo-empty')).toBeVisible();
   await expect(page.locator('.photo-controls')).toBeHidden();
   const url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=';
-  await page.evaluate(initPhotoCarousel, [{ url, number: 2 }, { url, number: 10 }]);
+  const zh = (await import('../locals/zh-CN.json', { with: { type: 'json' } })).default;
+  await page.evaluate(({ source, dictionary, photos }) => {
+    const t = (key: string, params: Record<string, string | number> = {}) => (dictionary[key as keyof typeof dictionary] ?? key).replace(/\{(\w+)\}/g, (_, name: string) => String(params[name] ?? `{${name}}`));
+    new Function('t', `return (${source})`)(t)(photos);
+  }, { source: initPhotoCarousel.toString(), dictionary: zh, photos: [{ url, number: 2 }, { url, number: 10 }] });
   await expect(page.locator('.photo-empty')).toBeHidden();
   await expect(page.locator('.photo-status')).toHaveText('1 / 2 · NZ_2');
   await page.getByRole('button', { name: '下一张照片' }).click();

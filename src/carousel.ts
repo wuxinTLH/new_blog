@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 type Photo = { url: string; number: number; thumbnail?: string };
 
 export function initPhotoCarousel(photos: Photo[]) {
@@ -19,13 +21,13 @@ export function initPhotoCarousel(photos: Photo[]) {
   preview.className = 'photo-preview';
   preview.hidden = true;
   preview.setAttribute('role', 'dialog');
-  preview.setAttribute('aria-label', '照片放大预览');
+  preview.setAttribute('aria-label', t('photo.preview'));
   const largeImage = document.createElement('img');
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'photo-preview-close';
   close.textContent = '×';
-  close.setAttribute('aria-label', '关闭照片预览');
+  close.setAttribute('aria-label', t('photo.close'));
   const previous = document.createElement('button');
   const next = document.createElement('button');
   previous.type = next.type = 'button';
@@ -33,8 +35,8 @@ export function initPhotoCarousel(photos: Photo[]) {
   next.className = 'photo-preview-nav photo-preview-next';
   previous.textContent = '‹';
   next.textContent = '›';
-  previous.setAttribute('aria-label', '上一张照片');
-  next.setAttribute('aria-label', '下一张照片');
+  previous.setAttribute('aria-label', t('photo.previous'));
+  next.setAttribute('aria-label', t('photo.next'));
   previous.hidden = next.hidden = photos.length < 2;
   previous.addEventListener('click', () => step(-1));
   next.addEventListener('click', () => step(1));
@@ -66,7 +68,7 @@ export function initPhotoCarousel(photos: Photo[]) {
   let closeTimer: ReturnType<typeof setTimeout> | undefined;
   image.tabIndex = 0;
   image.setAttribute('role', 'button');
-  image.setAttribute('aria-label', '放大查看照片');
+  image.setAttribute('aria-label', t('photo.zoom'));
   image.setAttribute('aria-expanded', 'false');
   function closePreview() {
     if (!zoomed) return;
@@ -137,14 +139,20 @@ export function initPhotoCarousel(photos: Photo[]) {
       const photo = photos[(index + delta + photos.length) % photos.length];
       preload(photo.thumbnail ?? photo.url);
     }
-    image.alt = `女装穿搭照片 nz_${photos[index].number}`;
+    image.alt = t('photo.alt', { number: photos[index].number });
     if (zoomed) {
       largeImage.src = photos[index].url;
       largeImage.alt = image.alt;
       preloadOriginals();
     }
-    status.textContent = `${index + 1} / ${photos.length} · NZ_${photos[index].number}`;
+    status.textContent = t('photo.status', { current: index + 1, total: photos.length, number: photos[index].number });
     dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
+    const activeDot = dots.children[index] as HTMLElement | undefined;
+    if (activeDot) {
+      const container = dots.getBoundingClientRect();
+      const active = activeDot.getBoundingClientRect();
+      dots.scrollTo({ left: dots.scrollLeft + active.left - container.left - (dots.clientWidth - active.width) / 2, behavior: motion.matches ? 'instant' : 'smooth' });
+    }
   }
   image.addEventListener('error', () => {
     image.hidden = true;
@@ -153,7 +161,7 @@ export function initPhotoCarousel(photos: Photo[]) {
   photos.forEach((photo, i) => {
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.setAttribute('aria-label', `查看照片 nz_${photo.number}`);
+    dot.setAttribute('aria-label', t('photo.dot', { number: photo.number }));
     dot.addEventListener('click', () => { show(i); schedule(); });
     dots.append(dot);
   });
@@ -162,7 +170,9 @@ export function initPhotoCarousel(photos: Photo[]) {
   gallery.querySelector('[data-photo-next]')!.addEventListener('click', () => step(1));
   pause.addEventListener('click', () => {
     paused = !paused;
-    pause.textContent = paused ? '继续播放' : '暂停播放';
+    pause.textContent = paused ? '▶' : '⏸';
+    pause.setAttribute('aria-label', t(paused ? 'photo.resume' : 'photo.pause'));
+    pause.title = t(paused ? 'photo.resume' : 'photo.pause');
     pause.setAttribute('aria-pressed', String(paused));
     schedule();
   });
@@ -191,6 +201,17 @@ export function initPhotoCarousel(photos: Photo[]) {
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', schedule);
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }).observe(gallery);
+  document.addEventListener('localechange', () => {
+    show(index);
+    preview.setAttribute('aria-label', t('photo.preview'));
+    close.setAttribute('aria-label', t('photo.close'));
+    previous.setAttribute('aria-label', t('photo.previous'));
+    next.setAttribute('aria-label', t('photo.next'));
+    image.setAttribute('aria-label', t('photo.zoom'));
+    pause.setAttribute('aria-label', t(paused ? 'photo.resume' : 'photo.pause'));
+    pause.title = t(paused ? 'photo.resume' : 'photo.pause');
+    dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-label', t('photo.dot', { number: photos[i].number })));
+  });
   show(0);
 }
 

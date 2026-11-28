@@ -1,4 +1,6 @@
 import './style.css';
+import { initI18n, t } from './i18n';
+initI18n();
 import { discoverPhotos, initPhotoCarousel } from './carousel';
 import { initProjects } from './projects';
 void initProjects();
@@ -9,7 +11,6 @@ initPhotoCarousel(discoverPhotos(photoFiles, thumbnails));
 
 type Theme = 'minimal' | 'light' | 'dark' | 'sakura';
 const themes: Theme[] = ['minimal', 'light', 'dark', 'sakura'];
-const names: Record<Theme, string> = { minimal: '极简', light: '浅色', dark: '深色', sakura: '蓝粉' };
 const colors: Record<Theme, string[]> = {
   minimal: ['#808080'], light: ['#65a9d8', '#a0cde8'],
   dark: ['#bca4f2', '#719eda'], sakura: ['#5bcefa', '#f5a9b8', '#ffffff'],
@@ -22,7 +23,7 @@ function applyTheme(theme: Theme, remember = false) {
   currentTheme = theme;
   root.dataset.theme = theme;
   buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.setTheme === theme)));
-  document.querySelector('.theme-current')!.textContent = names[theme];
+  document.querySelector('.theme-current')!.textContent = t(`theme.${theme}`);
   document.querySelector('meta[name="theme-color"]')!.setAttribute('content', theme === 'dark' ? '#151820' : theme === 'minimal' ? '#ffffff' : theme === 'light' ? '#f6f9fc' : '#faf8fb');
   if (remember) {
     try { localStorage.setItem('sakuramikku-theme', theme); } catch { /* Storage can be disabled in private contexts. */ }
@@ -34,6 +35,7 @@ window.addEventListener('storage', event => {
   if (event.key === 'sakuramikku-theme') applyTheme(themes.includes(event.newValue as Theme) ? event.newValue as Theme : 'sakura');
 });
 applyTheme(currentTheme);
+document.addEventListener('localechange', () => applyTheme(currentTheme));
 document.getElementById('year')!.textContent = String(new Date().getFullYear());
 
 // Native pointers stay usable even if animation, canvas, or JavaScript is unavailable.

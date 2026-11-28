@@ -1,12 +1,12 @@
 {
   "name": "sakuramikku-blog",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "thumbnails": "node scripts/create-thumbnails.mjs",
     "predev": "npm run thumbnails",
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
     "build": "npm run thumbnails && tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "playwright test"

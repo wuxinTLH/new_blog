@@ -1,13 +1,12 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="sakura">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#faf8fb" />
-    <meta name="description" content="SakuraMikku 的个人空间。关于代码、技术，以及生活中的一点点浪漫。" />
-    <link rel="icon" type="image/png" href="./avatar-circle.png" />
-    <link rel="apple-touch-icon" href="./avatar-circle.png" />
-    <title>SakuraMikku · 代码与浪漫</title>
+<html lang="zh-CN" data-theme="sakura"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#faf8fb">
+    <meta name="description" content="SakuraMikku 的个人空间。关于代码、技术，以及生活中的一点点浪漫。" data-i18n-attr="content:meta.description">
+    <link rel="icon" type="image/png" href="./avatar-circle.png">
+    <link rel="apple-touch-icon" href="./avatar-circle.png">
+    <title data-i18n="meta.title">SakuraMikku · 代码与浪漫</title>
     <script>
       // Apply the remembered theme before painting, even when storage is unavailable.
       try {
@@ -19,82 +18,81 @@
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">跳转到主要内容</a>
+    <a class="skip-link" href="#main" data-i18n="nav.skip">跳转到主要内容</a>
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="#home" aria-label="SakuraMikku 首页"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36" />Sakura<span class="brand-light">Mikku</span><span class="brand-dot">.</span></a>
-        <nav aria-label="主导航"><a class="nav-link active" href="#home">首页</a><a class="nav-link" href="#about">关于</a><a class="nav-link" href="#stack">技术栈</a></nav>
-        <a class="header-github" href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-      </header>
+        <a class="brand" href="#home" aria-label="SakuraMikku 首页" data-i18n-attr="aria-label:nav.homeLabel"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36"><span data-i18n="brand.sakura" class="i18n-text">Sakura</span><span class="brand-light" data-i18n="brand.mikku">Mikku</span><span class="brand-dot">.</span></a>
+        <nav aria-label="主导航" data-i18n-attr="aria-label:nav.main"><a class="nav-link active" href="#home" data-i18n="nav.home">首页</a><a class="nav-link" href="#about" data-i18n="nav.about">关于</a><a class="nav-link" href="#stack" data-i18n="nav.stack">技术栈</a></nav>
+        <a class="header-github" href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer"><span data-i18n="brand.github" class="i18n-text">GitHub</span> <span aria-hidden="true">↗</span></a>
+      <select id="locale-select" class="locale-select" data-locale-select="" aria-label="切换语言" data-i18n-attr="aria-label:locale.label"><option value="zh-CN" data-i18n="locale.zhCN">zh-CN</option><option value="en-US" data-i18n="locale.enUS">en-US</option></select></header>
       <main id="main">
         <section id="home" class="hero section-anchor" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <span class="eyebrow"><span class="status-dot"></span> HELLO, WORLD. HELLO, YOU.</span>
-            <h1 id="hero-title">在代码里探索，<br />在生活里<span class="gradient-text">绽放。</span><span class="tiny-spark" aria-hidden="true">✧</span></h1>
-            <p class="hero-intro">嗨，我是 <strong>SakuraMikku</strong><span class="wave" aria-hidden="true"> ✳</span><br />一个热爱技术，也喜欢女装穿搭与 Cosplay 的人。<br />写代码、搭配喜欢的衣服，用镜头收藏日常。<br />这里存放热爱，也记录慢慢成为自己的过程。</p>
-            <div class="identity-note"><span class="trans-flag" role="img" aria-label="跨性别旗帜：蓝、粉、白、粉、蓝五条色带"></span><span class="identity-badge">MTF <span aria-hidden="true">·</span> Male to Female</span><span class="identity-message">自在生长，成为自己。</span></div>
-            <div class="hero-actions"><a class="button button-primary" href="#stack">探索我的技术栈 <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="#about">认识一下 <span aria-hidden="true">↓</span></a></div>
-            <div class="hero-note"><span class="note-line"></span> STAY CURIOUS. KEEP CREATING.</div>
+            <span class="eyebrow"><span class="status-dot"></span> <span data-i18n="hero.eyebrow" class="i18n-text">HELLO, WORLD. HELLO, YOU.</span></span>
+            <h1 id="hero-title"><span data-i18n="hero.titleCode" class="i18n-text">在代码里探索，</span><br><span data-i18n="hero.titleLife" class="i18n-text">在生活里</span><span class="gradient-text" data-i18n="hero.titleBloom">绽放。</span><span class="tiny-spark" aria-hidden="true">✧</span></h1>
+            <p class="hero-intro"><span data-i18n="hero.greeting" class="i18n-text">嗨，我是</span> <strong data-i18n="brand.name">SakuraMikku</strong><span class="wave" aria-hidden="true"> ✳</span><br><span data-i18n="hero.introOne" class="i18n-text">一个热爱技术，也喜欢女装穿搭与 Cosplay 的人。</span><br><span data-i18n="hero.introTwo" class="i18n-text">写代码、搭配喜欢的衣服，用镜头收藏日常。</span><br><span data-i18n="hero.introThree" class="i18n-text">这里存放热爱，也记录慢慢成为自己的过程。</span></p>
+            <div class="identity-note"><span class="trans-flag" role="img" aria-label="跨性别旗帜：蓝、粉、白、粉、蓝五条色带" data-i18n-attr="aria-label:hero.transFlag"></span><span class="identity-badge"><span data-i18n="hero.identityShort" class="i18n-text">MTF</span> <span aria-hidden="true">·</span> <span data-i18n="hero.identityLong" class="i18n-text">Male to Female</span></span><span class="identity-message" data-i18n="hero.identityMessage">自在生长，成为自己。</span></div>
+            <div class="hero-actions"><a class="button button-primary" href="#stack"><span data-i18n="hero.explore" class="i18n-text">探索我的技术栈</span> <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="#about"><span data-i18n="hero.meet" class="i18n-text">认识一下</span> <span aria-hidden="true">↓</span></a></div>
+            <div class="hero-note"><span class="note-line"></span> <span data-i18n="hero.note" class="i18n-text">STAY CURIOUS. KEEP CREATING.</span></div>
           </div>
-          <div class="hero-art" role="img" aria-label="蓝粉色星球与环绕轨道，象征代码和创造力">
+          <div class="hero-art" role="img" aria-label="蓝粉色星球与环绕轨道，象征代码和创造力" data-i18n-attr="aria-label:hero.artLabel">
             <div class="art-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
             <span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><span class="art-star star-three">+</span>
             <div class="planet"><span class="planet-shine"></span><span class="planet-symbol">&lt;/&gt;</span></div>
-            <div class="float-label label-code"><span class="label-icon">⌘</span> Made of curiosity</div>
-            <div class="float-label label-heart"><span>♡</span> Free to be me</div>
-            <div class="art-caption"><span class="status-dot"></span> A LITTLE SPACE, A LOT OF POSSIBILITIES</div>
+            <div class="float-label label-code"><span class="label-icon">⌘</span> <span data-i18n="hero.curiosity" class="i18n-text">Made of curiosity</span></div>
+            <div class="float-label label-heart"><span>♡</span> <span data-i18n="hero.freedom" class="i18n-text">Free to be me</span></div>
+            <div class="art-caption"><span class="status-dot"></span> <span data-i18n="hero.artCaption" class="i18n-text">A LITTLE SPACE, A LOT OF POSSIBILITIES</span></div>
           </div>
         </section>
         <section id="about" class="photos-section section-anchor" aria-labelledby="photos-title">
-          <div class="section-heading"><span class="eyebrow">OUTFIT DIARY</span><h2 id="photos-title">穿搭相册<span class="accent">。</span></h2><p>收藏喜欢的造型，<br />记录每一种自在的自己。</p></div>
-          <div class="photo-gallery" role="region" aria-roledescription="轮播" aria-label="女装穿搭照片" tabindex="0">
-            <div class="photo-empty"><span aria-hidden="true">♡</span><h3>喜欢的模样，值得被收藏。</h3><p>相册准备中，期待与你分享下一次穿搭。</p></div>
-            <div class="photo-stage" hidden><img class="photo-image" alt="" decoding="async" /><p class="photo-error" hidden>这张照片暂时无法加载，请切换下一张。</p></div>
-            <div class="photo-toolbar"><span class="photo-status" aria-live="polite">OUTFIT DIARY</span><div class="photo-controls" hidden><button type="button" data-photo-prev aria-label="上一张照片">←</button><button type="button" data-photo-pause aria-pressed="false">暂停播放</button><button type="button" data-photo-next aria-label="下一张照片">→</button></div></div>
-            <div class="photo-dots" role="group" aria-label="选择照片"></div>
+          <div class="section-heading"><span class="eyebrow" data-i18n="photos.eyebrow">OUTFIT DIARY</span><h2 id="photos-title"><span data-i18n="photos.title" class="i18n-text">穿搭相册</span><span class="accent" data-i18n="ui.period">。</span></h2><p><span data-i18n="photos.introOne" class="i18n-text">收藏喜欢的造型，</span><br><span data-i18n="photos.introTwo" class="i18n-text">记录每一种自在的自己。</span></p></div>
+          <div class="photo-gallery" role="region" aria-roledescription="轮播" aria-label="女装穿搭照片" tabindex="0" data-i18n-attr="aria-label:photos.label;aria-roledescription:photos.carousel">
+            <div class="photo-empty"><span aria-hidden="true">♡</span><h3 data-i18n="photos.emptyTitle">喜欢的模样，值得被收藏。</h3><p data-i18n="photos.emptyDescription">相册准备中，期待与你分享下一次穿搭。</p></div>
+            <div class="photo-stage" hidden=""><img class="photo-image" alt="" decoding="async"><p class="photo-error" hidden="" data-i18n="photos.loadError">这张照片暂时无法加载，请切换下一张。</p></div>
+            <div class="photo-toolbar"><span class="photo-status" aria-live="polite" data-i18n="photos.eyebrow">OUTFIT DIARY</span><div class="photo-controls" hidden=""><button type="button" data-photo-prev="" aria-label="上一张照片" data-i18n-attr="aria-label:photo.previous">←</button><button type="button" data-photo-pause="" aria-pressed="false" aria-label="暂停播放" data-i18n-attr="aria-label:photo.pause">⏸</button><button type="button" data-photo-next="" aria-label="下一张照片" data-i18n-attr="aria-label:photo.next">→</button></div></div>
+            <div class="photo-dots" role="group" aria-label="选择照片" data-i18n-attr="aria-label:photos.choose"></div>
           </div>
         </section>
-        <div class="section-divider"><span>01 / A LITTLE ABOUT ME</span><span>慢慢来，也会很快。</span></div>
+        <div class="section-divider"><span data-i18n="about.divider">01 / A LITTLE ABOUT ME</span><span data-i18n="about.dividerNote">慢慢来，也会很快。</span></div>
         <section class="about-section" aria-labelledby="about-title">
-          <div class="section-heading"><span class="eyebrow">BEHIND THE SCREEN</span><h2 id="about-title">不止是代码<span class="accent">。</span></h2><p>技术是表达的方式，好奇心是前进的方向。</p></div>
+          <div class="section-heading"><span class="eyebrow" data-i18n="about.eyebrow">BEHIND THE SCREEN</span><h2 id="about-title"><span data-i18n="about.title" class="i18n-text">不止是代码</span><span class="accent" data-i18n="ui.period">。</span></h2><p data-i18n="about.intro">技术是表达的方式，好奇心是前进的方向。</p></div>
           <div class="about-cards">
-            <article class="info-card"><span class="card-icon icon-blue" aria-hidden="true">⌘</span><span class="card-number">01</span><h3>探索 & 构建</h3><p>从一个想法，到一个可以触摸的界面。享受把灵感变成现实的过程。</p><span class="card-tag">BUILD SOMETHING GOOD</span></article>
-            <article class="info-card"><span class="card-icon icon-pink" aria-hidden="true">✧</span><span class="card-number">02</span><h3>简单 & 纯粹</h3><p>喜欢清晰的逻辑，也喜欢干净的设计。让复杂留在背后，让简单走到眼前。</p><span class="card-tag">LESS, BUT BETTER</span></article>
-            <article class="info-card"><span class="card-icon icon-purple" aria-hidden="true">♧</span><span class="card-number">03</span><h3>穿搭 & 日常</h3><p>喜欢女装穿搭与 Cosplay，享受尝试不同风格的乐趣。用照片和视频记录喜欢的造型，也收藏平凡日子里的可爱瞬间。</p><span class="card-tag">LIFE BEYOND THE SCREEN</span></article>
+            <article class="info-card"><span class="card-icon icon-blue" aria-hidden="true">⌘</span><span class="card-number">01</span><h3 data-i18n="about.buildTitle">探索 &amp; 构建</h3><p data-i18n="about.buildDescription">从一个想法，到一个可以触摸的界面。享受把灵感变成现实的过程。</p><span class="card-tag" data-i18n="about.buildTag">BUILD SOMETHING GOOD</span></article>
+            <article class="info-card"><span class="card-icon icon-pink" aria-hidden="true">✧</span><span class="card-number">02</span><h3 data-i18n="about.simpleTitle">简单 &amp; 纯粹</h3><p data-i18n="about.simpleDescription">喜欢清晰的逻辑，也喜欢干净的设计。让复杂留在背后，让简单走到眼前。</p><span class="card-tag" data-i18n="about.simpleTag">LESS, BUT BETTER</span></article>
+            <article class="info-card"><span class="card-icon icon-purple" aria-hidden="true">♧</span><span class="card-number">03</span><h3 data-i18n="about.lifeTitle">穿搭 &amp; 日常</h3><p data-i18n="about.lifeDescription">喜欢女装穿搭与 Cosplay，享受尝试不同风格的乐趣。用照片和视频记录喜欢的造型，也收藏平凡日子里的可爱瞬间。</p><span class="card-tag" data-i18n="about.lifeTag">LIFE BEYOND THE SCREEN</span></article>
           </div>
         </section>
         <section id="stack" class="stack-section section-anchor" aria-labelledby="stack-title">
-          <div class="section-heading stack-heading"><div><span class="eyebrow">MY DIGITAL TOOLBOX</span><h2 id="stack-title">技术栈<span class="accent">。</span></h2></div><p>从前端到后端，从游戏到机器人。<br />用合适的工具，创造有趣的东西。</p></div>
+          <div class="section-heading stack-heading"><div><span class="eyebrow" data-i18n="stack.eyebrow">MY DIGITAL TOOLBOX</span><h2 id="stack-title"><span data-i18n="nav.stack" class="i18n-text">技术栈</span><span class="accent" data-i18n="ui.period">。</span></h2></div><p><span data-i18n="stack.introOne" class="i18n-text">从前端到后端，从游戏到机器人。</span><br><span data-i18n="stack.introTwo" class="i18n-text">用合适的工具，创造有趣的东西。</span></p></div>
           <div class="skill-grid">
-            <article class="skill-card"><h3>前端开发</h3><ul class="skill-tags"><li>Vue3 <span>Composition API + script setup</span></li><li>TypeScript</li><li>HTML</li><li>JavaScript</li></ul></article>
-            <article class="skill-card"><h3>后端开发</h3><ul class="skill-tags"><li>Java <span>SpringBoot 框架</span></li><li>Python</li><li>Node.js <span>Express 框架</span></li><li>C/C++</li><li>C# <span>Unity3D 游戏开发</span></li></ul></article>
-            <article class="skill-card"><h3>游戏开发</h3><ul class="skill-tags"><li>Unity3D <span>C#</span></li><li>UE5 <span>虚幻引擎</span></li></ul></article>
-            <article class="skill-card"><h3>数据库</h3><ul class="skill-tags"><li>MySQL</li><li>PostgreSQL</li><li>Redis</li></ul></article>
-            <article class="skill-card"><h3>消息队列</h3><ul class="skill-tags"><li>Kafka</li><li>RocketMQ</li></ul></article>
-            <article class="skill-card"><h3>云运维</h3><ul class="skill-tags"><li>Docker</li><li>Prometheus</li><li>Python <span>脚本</span></li><li>Shell <span>脚本</span></li></ul></article>
-            <article class="skill-card"><h3>机器人开发</h3><ul class="skill-tags"><li>AstrBot <span>聊天机器人框架</span></li><li>OneBot <span>聊天机器人协议</span></li></ul></article>
-            <article class="skill-card"><h3>Agent 开发</h3><ul class="skill-tags"><li>LLM API <span>大模型接入</span></li><li>Prompt Engineering <span>提示词工程</span></li><li>Tool Calling <span>工具调用</span></li><li>MCP <span>模型上下文协议</span></li><li>RAG <span>检索增强生成</span></li><li>Multi-Agent <span>多智能体协作</span></li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.frontend">前端开发</h3><ul class="skill-tags"><li><span data-i18n="tech.vue" class="i18n-text">Vue3</span> <span data-i18n="tech.vueDetails">Composition API + script setup</span></li><li data-i18n="tech.typescript">TypeScript</li><li data-i18n="tech.html">HTML</li><li data-i18n="tech.javascript">JavaScript</li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.backend">后端开发</h3><ul class="skill-tags"><li><span data-i18n="tech.java" class="i18n-text">Java</span> <span data-i18n="tech.spring">SpringBoot 框架</span></li><li data-i18n="tech.python">Python</li><li><span data-i18n="tech.node" class="i18n-text">Node.js</span> <span data-i18n="tech.express">Express 框架</span></li><li data-i18n="tech.cpp">C/C++</li><li><span data-i18n="tech.csharp" class="i18n-text">C#</span> <span data-i18n="tech.unityDetails">Unity3D 游戏开发</span></li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.games">游戏开发</h3><ul class="skill-tags"><li><span data-i18n="tech.unity" class="i18n-text">Unity3D</span> <span data-i18n="tech.csharp">C#</span></li><li><span data-i18n="tech.ue" class="i18n-text">UE5</span> <span data-i18n="tech.unreal">虚幻引擎</span></li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.databases">数据库</h3><ul class="skill-tags"><li data-i18n="tech.mysql">MySQL</li><li data-i18n="tech.postgres">PostgreSQL</li><li data-i18n="tech.redis">Redis</li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.messaging">消息队列</h3><ul class="skill-tags"><li data-i18n="tech.kafka">Kafka</li><li data-i18n="tech.rocketmq">RocketMQ</li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.cloud">云运维</h3><ul class="skill-tags"><li data-i18n="tech.docker">Docker</li><li data-i18n="tech.prometheus">Prometheus</li><li><span data-i18n="tech.python" class="i18n-text">Python</span> <span data-i18n="tech.scripts">脚本</span></li><li><span data-i18n="tech.shell" class="i18n-text">Shell</span> <span data-i18n="tech.scripts">脚本</span></li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.bots">机器人开发</h3><ul class="skill-tags"><li><span data-i18n="tech.astrbot" class="i18n-text">AstrBot</span> <span data-i18n="tech.botFramework">聊天机器人框架</span></li><li><span data-i18n="tech.onebot" class="i18n-text">OneBot</span> <span data-i18n="tech.botProtocol">聊天机器人协议</span></li></ul></article>
+            <article class="skill-card"><h3 data-i18n="stack.agents">Agent 开发</h3><ul class="skill-tags"><li><span data-i18n="tech.llm" class="i18n-text">LLM API</span> <span data-i18n="tech.llmDetails">大模型接入</span></li><li><span data-i18n="tech.prompt" class="i18n-text">Prompt Engineering</span> <span data-i18n="tech.promptDetails">提示词工程</span></li><li><span data-i18n="tech.tools" class="i18n-text">Tool Calling</span> <span data-i18n="tech.toolsDetails">工具调用</span></li><li><span data-i18n="tech.mcp" class="i18n-text">MCP</span> <span data-i18n="tech.mcpDetails">模型上下文协议</span></li><li><span data-i18n="tech.rag" class="i18n-text">RAG</span> <span data-i18n="tech.ragDetails">检索增强生成</span></li><li><span data-i18n="tech.multiagent" class="i18n-text">Multi-Agent</span> <span data-i18n="tech.multiagentDetails">多智能体协作</span></li></ul></article>
           </div>
         </section>
         <section class="projects-section" aria-labelledby="projects-title">
-          <div class="section-heading"><span class="eyebrow">BUILDING IN PUBLIC</span><h2 id="projects-title">最近在 GitHub<span class="accent">。</span></h2><p>自动展示最近更新的公开项目，让想法慢慢落地。</p></div>
-          <p class="project-status" role="status">正在从 GitHub 获取项目…</p>
+          <div class="section-heading"><span class="eyebrow" data-i18n="projects.eyebrow">BUILDING IN PUBLIC</span><h2 id="projects-title"><span data-i18n="projects.title" class="i18n-text">最近在 GitHub</span><span class="accent" data-i18n="ui.period">。</span></h2><p data-i18n="projects.intro">自动展示最近更新的公开项目，让想法慢慢落地。</p></div>
+          <p class="project-status" role="status" data-i18n="projects.loading">正在从 GitHub 获取项目…</p>
           <div class="project-grid" aria-busy="true"></div>
-          <a class="project-more" href="https://github.com/wuxintlh?tab=repositories" target="_blank" rel="noopener noreferrer">查看全部 GitHub 项目 ↗</a>
+          <a class="project-more" href="https://github.com/wuxintlh?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="projects.more">查看全部 GitHub 项目 ↗</a>
         </section>
       </main>
       <footer class="site-footer">
-        <section class="connect-section" aria-labelledby="connect-title"><div><span class="eyebrow">LET’S CONNECT</span><h2 id="connect-title">很高兴，在这里遇见你。</h2><p>代码、穿搭与日常，都欢迎来打个招呼。更多社交入口就在下方。</p></div><span class="connect-decoration" aria-hidden="true">✳</span>
-        <div class="footer-top"><a class="brand" href="#home"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36" />Sakura<span class="brand-light">Mikku</span><span class="brand-dot">.</span></a><nav class="footer-links" aria-label="社交导航">
-          <a href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.82c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub</span><span class="social-arrow" aria-hidden="true">↗</span></a>
-          <a href="https://space.bilibili.com/29058270" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="4"/><path d="m7 2 4 5m6-5-4 5M8 12v3m8-3v3m-7 3h6"/></svg><span>哔哩哔哩</span><span class="social-arrow" aria-hidden="true">↗</span></a>
-          <a href="https://x.com/SakuraMikku" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h5l11 18h-5ZM20 3 4 21"/></svg><span>X</span><span class="social-arrow" aria-hidden="true">↗</span></a>
-          <a href="https://qm.qq.com/q/qWt61dd9cG" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M17 5a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"/></svg><span>加入 QQ 粉丝群</span><span class="social-arrow" aria-hidden="true">↗</span></a>
-          <a href="https://t.me/+4-YmXdo5WC9mZTY8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-4 18-6-5-4 3 1-6L21 3ZM8 13l9-6m-6 9 6-9M8 13l-6-3 19-7"/></svg><span>加入电报群</span><span class="social-arrow" aria-hidden="true">↗</span></a>
-        </nav></div></section><div class="footer-bottom"><span>© <span id="year">2026</span> SakuraMikku. All rights reserved.</span><span>以代码为笔，以热爱为墨 <span class="footer-heart">♡</span></span><a href="https://vite.dev" target="_blank" rel="noopener noreferrer">Built with Vite ↗</a></div></footer>
+        <section class="connect-section" aria-labelledby="connect-title"><div><span class="eyebrow" data-i18n="footer.eyebrow">LET’S CONNECT</span><h2 id="connect-title" data-i18n="footer.title">很高兴，在这里遇见你。</h2><p data-i18n="footer.intro">代码、穿搭与日常，都欢迎来打个招呼。更多社交入口就在下方。</p></div><span class="connect-decoration" aria-hidden="true">✳</span>
+        <div class="footer-top"><a class="brand" href="#home"><img class="brand-avatar" src="./avatar-circle.png" alt="" width="36" height="36"><span data-i18n="brand.sakura" class="i18n-text">Sakura</span><span class="brand-light" data-i18n="brand.mikku">Mikku</span><span class="brand-dot">.</span></a><nav class="footer-links" aria-label="社交导航" data-i18n-attr="aria-label:footer.socialNav">
+          <a href="https://github.com/wuxintlh" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.82c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg><span data-i18n="brand.github">GitHub</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://space.bilibili.com/29058270" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="4"></rect><path d="m7 2 4 5m6-5-4 5M8 12v3m8-3v3m-7 3h6"></path></svg><span data-i18n="brand.bilibili">哔哩哔哩</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://x.com/SakuraMikku" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h5l11 18h-5ZM20 3 4 21"></path></svg><span data-i18n="brand.x">X</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://qm.qq.com/q/qWt61dd9cG" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M2 21v-3a7 7 0 0 1 14 0v3M17 5a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"></path></svg><span data-i18n="footer.qq">加入 QQ 粉丝群</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://t.me/+4-YmXdo5WC9mZTY8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-4 18-6-5-4 3 1-6L21 3ZM8 13l9-6m-6 9 6-9M8 13l-6-3 19-7"></path></svg><span data-i18n="footer.telegram">加入电报群</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+        </nav></div></section><div class="footer-bottom"><span>© <span id="year">2026</span> <span data-i18n="footer.copyright" class="i18n-text">SakuraMikku. All rights reserved.</span></span><span><span data-i18n="footer.motto" class="i18n-text">以代码为笔，以热爱为墨</span> <span class="footer-heart">♡</span></span><span data-i18n="footer.built">Built with love ♡</span></div></footer>
     </div>
-    <aside class="theme-dock" aria-label="外观主题"><span class="theme-dock-label">外观</span><div class="theme-options" role="group" aria-label="选择主题"><button type="button" data-set-theme="minimal" title="极简主题" aria-label="极简主题" aria-pressed="false"><span class="swatch swatch-minimal"></span></button><button type="button" data-set-theme="light" title="浅色主题" aria-label="浅色主题" aria-pressed="false"><span class="swatch swatch-light"></span></button><button type="button" data-set-theme="dark" title="深色主题" aria-label="深色主题" aria-pressed="false"><span class="swatch swatch-dark"></span></button><button type="button" data-set-theme="sakura" title="蓝粉主题" aria-label="蓝粉主题" aria-pressed="true"><span class="swatch swatch-sakura"></span></button></div><span class="theme-current" aria-live="polite">蓝粉</span></aside>
+    <aside class="theme-dock" aria-label="外观主题" data-i18n-attr="aria-label:theme.label"><span class="theme-dock-label" data-i18n="theme.heading">外观</span><div class="theme-options" role="group" aria-label="选择主题" data-i18n-attr="aria-label:theme.choose"><button type="button" data-set-theme="minimal" title="极简主题" aria-label="极简主题" aria-pressed="false" data-i18n-attr="aria-label:theme.minimalTitle;title:theme.minimalTitle"><span class="swatch swatch-minimal"></span></button><button type="button" data-set-theme="light" title="浅色主题" aria-label="浅色主题" aria-pressed="false" data-i18n-attr="aria-label:theme.lightTitle;title:theme.lightTitle"><span class="swatch swatch-light"></span></button><button type="button" data-set-theme="dark" title="深色主题" aria-label="深色主题" aria-pressed="false" data-i18n-attr="aria-label:theme.darkTitle;title:theme.darkTitle"><span class="swatch swatch-dark"></span></button><button type="button" data-set-theme="sakura" title="蓝粉主题" aria-label="蓝粉主题" aria-pressed="true" data-i18n-attr="aria-label:theme.sakuraTitle;title:theme.sakuraTitle"><span class="swatch swatch-sakura"></span></button></div><span class="theme-current" aria-live="polite">蓝粉</span></aside>
     <canvas id="cursor-trail" aria-hidden="true"></canvas><div id="cursor-follower" aria-hidden="true"></div>
     <script type="module" src="/src/main.ts"></script>
-  </body>
-</html>
+</body></html>
