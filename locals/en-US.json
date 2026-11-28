@@ -153,6 +153,6 @@
   "ui.period": ".",
   "ui.swipe": "Swipe left or right for more ↔",
   "locale.label": "Switch language",
-  "locale.zhCN": "zh-CN",
-  "locale.enUS": "en-US"
+  "locale.zhCN": "简体中文",
+  "locale.enUS": "English"
 }

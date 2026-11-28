@@ -153,6 +153,6 @@
   "ui.period": "。",
   "ui.swipe": "左右滑动查看更多 ↔",
   "locale.label": "切换语言",
-  "locale.zhCN": "zh-CN",
-  "locale.enUS": "en-US"
+  "locale.zhCN": "简体中文",
+  "locale.enUS": "English"
 }
